@@ -1,4 +1,5 @@
 # GSOPs (Gaussian Splatting Operators) for SideFX Houdini 20.5
+_GSOPs is now available with a **Houdini Commercial** license._
 
 [Watch the GSOPs Showcase](https://www.youtube.com/watch?v=5V7mBuVxlt4)
 
@@ -50,8 +51,6 @@ For more information regarding any of the following nodes, please reference the 
 * Please be kind. We love innovating and learning, and we want you to benefit from this project.
 * GSOPs is only supported for Houdini 20.5. This is due to an API change in the HDK. You should still be able to customize your installation for Houdini 20.0 and continue using the digital assets.
 * We provide precompiled binaries of [`houdini-gsplat-renderer`](https://github.com/rubendhz/houdini-gsplat-renderer) for Houdini 20.5 on Windows and MacOS. Linux is not officially supported, but you can attempt to compile it yourself. 
-* All digital assets and example scenes in this repo are currently under the Houdini Apprentice license. Because GSOPs won 3rd place in the [H20 SIDEFX LABS Tech Art Challenge](https://www.sidefx.com/community-main-menu/contests-jams/h20-tech-art-challenge/), GSOPs 2.0 (full release) will be upgraded to Houdini Indie.
-* [Click here to download a Commercial license snapshop of GSOPs 1.0](https://media.sidefx.com/uploads/contests/H20_techart_challenge/assets/utility_03_gsops.zip). **Some features may be missing compared to this repo.**
 * Please adhere to the [SideFX Houdini License Agreement](https://www.sidefx.com/legal/license-agreement/).
 * GSOPs can generate gaussian splat training data, but it cannot train models. If you want to train models locally, please see [3D Gaussian Splatting for Real-Time Radiance Field Rendering](https://github.com/graphdeco-inria/gaussian-splatting) or [Postshot](https://www.jawset.com/).
 * If you're interested in what you've seen and would like to discuss innovation/R&D collaboration opportunities, please contact us.
@@ -83,7 +82,7 @@ For more information regarding any of the following nodes, please reference the 
 ## Known Issues
 We consider GSOPs to be a professional-grade prototyping toolset. It is not free from error, and the user experience could be improved in many areas. Here are some of the known issues:
 
-* Rotating a splat model will not update spherical harmonics data accordingly. As a result, view-dependent lighting effects will not behave correctly in exported models. **We hope this will be resolved in GSOPs 2.0**
+* Rotating a splat model will not update spherical harmonics data accordingly. As a result, view-dependent lighting effects will not behave correctly in exported models. **We hope this will be resolved in GSOPs 2.1**
 * Rendering the viewport with `gaussian_splats_generate_training_data` will always use the viewport aspect ratio as the camera resolution aspect ratio (with a maxmium dominant resolution of 720 in Houdini Apprentice). This is because I could not find a python hook to set the viewport size. As a workaround, be sure to set your viewport size manually before performing viewport renders. As an alternative, you can render the scene using [flipbook](https://www.sidefx.com/docs/houdini/render/flipbook.html).
 * It is possible to create bad export data when using the `unpack` feature of `gaussian_splats_visualize_boxes`. As a workaround, avoid having this node in any data stream leading to an export node.
 * The`gaussian_splats_feature_analysis visualizer` sometimes fails to refresh (toggle the visualize button as a workaround), and this often precedes a Houdini crash. The UX when dealing with very small or large attribute values also needs improvement.
