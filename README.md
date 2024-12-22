@@ -1,5 +1,5 @@
 # GSOPs (Gaussian Splatting Operators) for SideFX Houdini 20.5
-_GSOPs is now available with a **Houdini Commercial** license._
+_Now available under the **Houdini Commercial** license._
 
 [Watch the GSOPs Showcase](https://www.youtube.com/watch?v=5V7mBuVxlt4)
 
