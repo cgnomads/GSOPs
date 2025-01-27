@@ -3,7 +3,7 @@ _Now available under the **Houdini Commercial** license._
 
 [Watch the GSOPs Showcase](https://www.youtube.com/watch?v=5V7mBuVxlt4)
 
-[![GSOPs Showcase Video](help/images/gsops_promo.png)](https://www.youtube.com/watch?v=5V7mBuVxlt4)
+[![GSOPs Showcase Video](help/images/gsops_pig.gif)](https://www.youtube.com/watch?v=5V7mBuVxlt4)
 
 ## About
 GSOPs is a collaborative project from [David Rhodes](https://www.linkedin.com/in/davidarhodes/) and [Ruben Diaz](https://www.linkedin.com/in/rubendz/). It is comprised of a [viewport renderer](https://github.com/rubendhz/houdini-gsplat-renderer), [example files](https://github.com/david-rhodes/GSOPs/tree/develop/hip), and several digital assets to assist with common I/O and editing operations for 3DGS content. GSOPs is developed in our personal time and is provided as-is. 
