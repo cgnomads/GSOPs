@@ -1,0 +1,23 @@
+{
+    "date" : "2025-02-05",
+    "popup" : {
+        "title" : "GSOPs 2.5",
+        "content" : "Thank you for installing GSOPs version 2.5.0. We are really proud of this update, including many feeatures and improvements. We hope you enjoy it!",
+        "buttons" : [
+            {
+                "text" : "Support GSOPs",
+                "action" : "open_url",
+                "url" : "https://buymeacoffee.com/gsopsproject"
+            },
+            {
+                "text" : "Join Discord Sever",
+                "action" : "open_url",
+                "url" : "https://discord.gg/bwsvvRYNJa"
+            },
+            {
+                "text" : "Close",
+                "action" : "close"
+            }
+        ]
+    }
+}
