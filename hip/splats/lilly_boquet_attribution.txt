@@ -1,3 +1,5 @@
+Not for commercial use!
+
 Provided courtesy of David Lisser: https://davidlisser.co.uk/.
 
 Spherical harmonics (f_rest_*) attributes not included due to GitHub file size limits.
