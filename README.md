@@ -1,4 +1,4 @@
-# GSOPs (Gaussian Splatting Operators) for SideFX Houdini 20.5
+# GSOPs 2.5 (Gaussian Splatting Operators) for SideFX Houdini 20.5
 _Now available under the **Houdini Commercial** license._
 
 [Watch the GSOPs Showcase](https://www.youtube.com/watch?v=5V7mBuVxlt4)
@@ -32,20 +32,20 @@ We're passionate about the potential of editable radiance fields in SideFX Houdi
 ## SOP Nodes
 For more information regarding any of the following nodes, please reference the built-in help cards. *(SideFX, if you are reading this, thank you for making an incredible documentation system!)*
 
-* **[UPDATED]** `gaussian_splats_align_by_points`: Aligns a gaussian splat model to the world origin. _Now supports SH rotation._
+* **[UPDATED]** `gaussian_splats_align_by_points`: Align a Gaussian splat model to the world origin. _Now supports SH rotation._
 * **[NEW]** `gaussian_splats_attribute_adjust`: Quickly modify and preview Gaussian splat attributes, including spherical harmonics.
-* `gaussian_splats_crop`: Crop or groups a splat model.
+* `gaussian_splats_crop`: Crop or group a splat model.
 * `gaussian_splats_dbscan`: Density-based spatial clustering useful for removing noise and outliers.
-* **[UPDATED]** `gaussian_splats_deform`: Deform splat models using polygonal geometry. _Now supports per-point scale and SH rotation._
-* **[UPDATED + BREAKING CHANGES]** `gaussian_splats_export`: Export Houdini gaussian splat geometry to disk, converting all relevant point data to native gaussian splat attributes in the process. _Updated to support SH refactor._
-* `gaussian_splats_feature_analysis`: Perform statistical analysis of gaussian splat models.
+* **[UPDATED]** `gaussian_splats_deform`: Deform splat models using polygonal geometry (e.g., using meshes created with GSOPs Coarse Meshing Utilities). _Now supports per-point scale and SH rotation._
+* **[UPDATED + BREAKING CHANGES]** `gaussian_splats_export`: Export Houdini Gaussian splat geometry to disk, converting all relevant point data to native Gaussian splat attributes in the process. _Updated to support SH refactor._
+* `gaussian_splats_feature_analysis`: Perform statistical analysis of Gaussian splat models.
 * **[NEW]** `gaussian_splats_from_polygons`: Create Gaussian splats (without training) from surfaces or volumes for splat infill and other creative effects.
-* `gaussian_splats_generate_training_data`: Generate synthetic data suitable for training clean gaussian splat models. 
+* `gaussian_splats_generate_training_data`: Generate synthetic data suitable for training clean Gaussian splat models. 
 * `gaussian_splats_hald_clut`: Apply color adjustment to splats based on [Hald Color Look-Up Tables](https://www.quelsolaar.com/technology/clut.html).
-* **[UPDATED + BREAKING CHANGES]** `gaussian_splats_import`: Load a trained gaussian splat model, converting all relevant data to native Houdini point attributes. _Updated to support SH refactor and downstream edits._
-* `gaussian_splats_import_cameras`: Import a cameras.json file generated as a result of training gaussian splat models (via Inria's implementation).
-* `gaussian_splats_relight_ibl`: Relight gaussian splat models using image-based lighting techniques.
-* **[NEW]** `gaussian_splats_source`: Convert point geometry (as defined by `gaussian_splats_import`) into "GSplat" primitives, enabling their rendering in the viewport. _This is a wrapper around the old `GSplat Source`._
+* **[UPDATED + BREAKING CHANGES]** `gaussian_splats_import`: Load a trained Gaussian splat model, converting all relevant data to native Houdini point attributes. _Updated to support SH refactor and downstream edits._
+* `gaussian_splats_import_cameras`: Import a cameras.json file generated as a result of training Gaussian splat models (via Inria's implementation).
+* `gaussian_splats_relight_ibl`: Relight Gaussian splat models using image-based lighting techniques.
+* **[NEW]** `gaussian_splats_source`: Convert point geometry (as defined by `gaussian_splats_import`) into "Gaussian Splat" primitives, enabling their rendering in the viewport. _This is a wrapper around the old `GSplat Source`._
 * **[UPDATED]** `gaussian_splats_transform`: Translate, rotate, and scale splats. _Added support for splat scaling and SH rotation via detail or point trasnsformations._
 * `gaussian_splats_visualize_boxes`: Visualize Gaussian splats as opaque primitives (box and ellipsoid).
 
@@ -61,13 +61,14 @@ GSOPs 2.5 introduces dependency-free coarse meshing for 3D Gaussian Splatting. T
 To make the most of these utilities, follow these guidelines:
 * Prefer the ADC training profile over MCMC. While MCMC works very well, especially for environments, it often creates very large splats that make the meshing process more difficult.
 * Align your model to the world origin (e.g., by using `gaussian_splats_align_by_points`).
-* Scale your model to real world reference units. You can do this by measuring the length of an object or feature in your scene before or after scanning. After aligning your scene, measure the distance between two corresponding reference points. Use the result of (real_world_measurement / splat_measurement) as the uniform scale value of `gaussian_splats_transform`.
-* When dealing with very noisy scenes, it's recommended to preprocess your splats (`gaussian_splats_prepare_for_vdb` and `gaussians_splats_feature_analysis are great for this).
+* Scale your model to real world reference units. You can do this by measuring the length of an object or feature in your scene before or after scanning. After aligning your scene, measure the distance between two corresponding reference points. Use the result of `(real_world_measurement / splat_measurement)` for the uniform scale value of `gaussian_splats_transform`.
+* When dealing with very noisy scenes, it's recommended to preprocess your splats (`gaussian_splats_prepare_for_vdb` and `gaussians_splats_feature_analysis` are great for this).
 * Ensure your VDBs/Meshes are watertight before transferring normals or using `splat_mesh_from_point_cloud`. Because splats are volumetric (rather than exclusively surface aligned), holes in the mesh can easily produce bad data for "interior" splats.
-* Coarse meshing utilities image **PLACEHOLDER**
+* Input and Output pins have been color coded according to data type (similar to Houdini KineFX operators). Blue pins: Gaussian splats. Yellow pins: VDB. Purple pins: coarse mesh. Pink pins: other. In many cases, outputs exist for visual reference or are a simple passthrough (for network organization).
+<img src="/help/images/gsops_coarse_meshing_ux.png" alt="drawing" width="400"/>
 
 ## **[NEW]** Toys
-GSOPs 2.5 also brings new "toys" for your convience. **These toys are undocumented and experimental, but example scenes are available for your reference.**
+GSOPs 2.5 also brings new "toys" for your convience. **These toys are undocumented and experimental!** However, [example scenes](https://github.com/david-rhodes/GSOPs/tree/develop/hip) are available for your reference.
 * `gaussian_splats_advect`: Advect Gaussian splats using a velocity field.
 * `gaussian_splats_font`: Create text from Gaussian splats.
 * `gaussian_splats_jellify`: Perform softbody vellum simulation on Gaussian splats using a coarse mesh.
@@ -78,14 +79,14 @@ With GSOPs 2.5, spherical harmonics have been refactored to streamline data acce
 * **[v3.0]** `gaussian_splats_export`
 * **[v1.0]** `gaussian_splats_source` _(This is not necessarily a breaking change, but the old `GSplat Source` SOP has been hidden. It is **strongly** recommended to use this node for future compatibility!)_
 
-**To avoid introducing any undesired modifications to existing scenes, do not blindly update instances of the import and export nodes to the latest version!**
+**To avoid introducing undesired modifications to existing scenes, do not blindly update instances of the import and export nodes!** (Node updates should be opt-in because the type definition version has been incremeneted.)
 
 ## Notes
 * Please be kind. We love innovating and learning, and we want you to benefit from this project.
 * GSOPs is only supported for Houdini 20.5. This is due to an API change in the HDK. You should still be able to customize your installation for Houdini 20.0 and continue using the digital assets.
 * We provide precompiled binaries of [`houdini-gsplat-renderer`](https://github.com/rubendhz/houdini-gsplat-renderer) for Houdini 20.5 on Windows and MacOS. Linux is not officially supported, but you can attempt to compile it yourself. 
 * Please adhere to the [SideFX Houdini License Agreement](https://www.sidefx.com/legal/license-agreement/).
-* GSOPs can generate gaussian splat training data, but it cannot train models. If you want to train models locally, please see [3D Gaussian Splatting for Real-Time Radiance Field Rendering](https://github.com/graphdeco-inria/gaussian-splatting) or [Postshot](https://www.jawset.com/).
+* GSOPs can generate Gaussian splat training data, but it cannot train models. If you want to train models locally, please see [3D Gaussian Splatting for Real-Time Radiance Field Rendering](https://github.com/graphdeco-inria/gaussian-splatting) or [Postshot](https://www.jawset.com/).
 * If you're interested in what you've seen and would like to discuss innovation/R&D collaboration opportunities, please contact us.
 
 ## Installation
@@ -115,8 +116,9 @@ With GSOPs 2.5, spherical harmonics have been refactored to streamline data acce
 ## Known Issues
 We consider GSOPs to be a professional-grade prototyping toolset. It is not free from error, and the user experience could be improved in many areas. Here are some of the known issues:
 
-* ~~Rotating a splat model will not update spherical harmonics data accordingly. As a result, view-dependent lighting effects will not behave correctly in exported models.~~ **This has been resolved in GSOPs 2.5**
-* Rendering the viewport with `gaussian_splats_generate_training_data` will always use the viewport aspect ratio as the camera resolution aspect ratio (with a maxmium dominant resolution of 720 in Houdini Apprentice). This is because I could not find a python hook to set the viewport size. As a workaround, be sure to set your viewport size manually before performing viewport renders. As an alternative, you can render the scene using [flipbook](https://www.sidefx.com/docs/houdini/render/flipbook.html). **If the `render_viewport` button does not work, change your Houdini desktop layout to the default `Build` layout.**
+* ~~Rotating a splat model will not update spherical harmonics data accordingly. As a result, view-dependent lighting effects will not behave correctly in exported models.~~ **This has been fixed in GSOPs 2.5!**
+* Rendering the viewport with `gaussian_splats_generate_training_data` will always use the viewport aspect ratio as the camera resolution aspect ratio (with a maxmium dominant resolution of 720 in Houdini Apprentice). This is because I could not find a python hook to set the viewport size. As a workaround, be sure to set your viewport size manually before performing viewport renders. As an alternative, you can render the scene using [flipbook](https://www.sidefx.com/docs/houdini/render/flipbook.html).
+* If the `gaussian_splats_generate_training_data` `render_viewport` button does not work, change your Houdini layout to the default `Build` layout. This is due to a hardcoded viewport panel reference.
 * It is possible to create bad export data when using the `unpack` feature of `gaussian_splats_visualize_boxes`. As a workaround, avoid having this node in any data stream leading to an export node.
 * The`gaussian_splats_feature_analysis` visualizer sometimes fails to refresh (toggle the visualize button as a workaround), and this often precedes a Houdini crash. The UX when dealing with very small or large attribute values also needs improvement.
 * There's quite a bit of python in the project which needs additional error handling.
