@@ -50,7 +50,9 @@ For more information regarding any of the following nodes, please reference the 
 * `gaussian_splats_visualize_boxes`: Visualize Gaussian splats as opaque primitives (box and ellipsoid).
 
 ## **[NEW]** Coarse Meshing
-GSOPs 2.5 introduces dependency-free coarse meshing for 3D Gaussian Splatting. The following utilities are available to assist in the meshing process:
+GSOPs 2.5 introduces dependency-free coarse meshing for 3D Gaussian Splatting. Coarse meshes are an effective "sparse node graph" for splat editing operations.
+
+The following utilities are available to assist in the meshing process:
 * `gaussian_splats_apply_normals`: Transfer normals from a coarse mesh to splats (e.g., for relighting).
 * `splat_mesh_from_point_cloud`: Generate a mesh from a geometry with normals and the splat point cloud (i.e., often a part of coarse mesh refinement).
 * `splat_mesh_from_vdb`: Generate a mesh from a VDB.
@@ -58,7 +60,7 @@ GSOPs 2.5 introduces dependency-free coarse meshing for 3D Gaussian Splatting. T
 * `gaussian_splats_vdb_slice`: Extract geometry from a cross-section of a VDB (e.g., to fill holes with `splats_from_polygons`).
 * `vdb_from_gaussian_splats`: Create a VDB from Gaussian Splats (i.e., to generate a coarse mesh).
 
-To make the most of these utilities, follow these guidelines:
+### Coarse Meshing Guidelines
 * Prefer the ADC training profile over MCMC. While MCMC works very well, especially for environments, it often creates very large splats that make the meshing process more difficult.
 * Align your model to the world origin (e.g., by using `gaussian_splats_align_by_points`).
 * Scale your model to real world reference units. You can do this by measuring the length of an object or feature in your scene before or after scanning. After aligning your scene, measure the distance between two corresponding reference points. Use the result of `(real_world_measurement / splat_measurement)` for the uniform scale value of `gaussian_splats_transform`.
@@ -71,7 +73,7 @@ To make the most of these utilities, follow these guidelines:
 GSOPs 2.5 also brings new "toys" for your convience. **These toys are undocumented and experimental!** However, [example scenes](https://github.com/david-rhodes/GSOPs/tree/develop/hip) are available for your reference.
 * `gaussian_splats_advect`: Advect Gaussian splats using a velocity field.
 * `gaussian_splats_font`: Create text from Gaussian splats.
-* `gaussian_splats_jellify`: Perform softbody vellum simulation on Gaussian splats using a coarse mesh.
+* `gaussian_splats_jellify`: Perform softbody (Vellum) simulation on Gaussian splats using a coarse mesh.
 
 ## Breaking Changes in GSOPs 2.5
 With GSOPs 2.5, spherical harmonics have been refactored to streamline data access and support SH rotation (and other editing operations). When Gaussian splats are imported, `f_rest_*` attributes are converted to a vector array named `sh_coefficients`. The following nodes are affected:
