@@ -136,10 +136,11 @@ Thank you, community! Your support, interest, and rapid contributions to gaussia
 Major kudos to the original inventors of Gaussian Splatting, [Inria and the Max Planck Institut for Informatik (MPII)](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/)! 
 
 ### From Ruben 
-I don't think I would have gotten this far without the inspiration from so many amazing open-source projects. I’d like to highlight two in particular; although I haven’t directly reached out to the authors, their work has been massively helpful, so I want to give special kudos to them:
+I wouldn't have gotten this far without the inspiration from so many incredible open-source projects. While I haven’t directly reached out to the authors, their work has been immensely helpful, and I want to give special kudos to them:
 
 - https://github.com/aras-p/UnityGaussianSplatting
 - https://github.com/antimatter15/splat
+- https://github.com/andrewwillmott/sh-lib
 
 ## Final Thoughts
 This project is licensed under a _copyleft_ AGPL-3.0 license. If you require a different arrangement, please contact us to discuss alternatives.
