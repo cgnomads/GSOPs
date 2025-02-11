@@ -124,21 +124,6 @@ We consider GSOPs to be a professional-grade prototyping toolset. It is not free
 * It is possible to create bad export data when using the `unpack` feature of `gaussian_splats_visualize_boxes`. As a workaround, avoid having this node in any data stream leading to an export node.
 * The`gaussian_splats_feature_analysis` visualizer sometimes fails to refresh (toggle the visualize button as a workaround), and this often precedes a Houdini crash. The UX when dealing with very small or large attribute values also needs improvement.
 * There's quite a bit of python in the project which needs additional error handling.
-   
-## Contribution Wish List
-We have not yet been able to implement all the cool ideas we have. However, in open-sourcing GSOPs, we hope to involve the community. After all, we're stronger together! Please [join us on Discord](https://discord.gg/bwsvvRYNJa)! 
-
-Here's our wish list for community contributions (please feel free to bring your own ideas, too):
-- [x] Viewport Renderer (Thanks, [Ruben](https://github.com/rubendhz)!)
-- [x] [Splat lighting toolkit](https://www.youtube.com/watch?v=5-oFqtbg6xM).
-- [ ] I/O for compressed splats. One approach may be [Niantic's SPZ format](https://github.com/nianticlabs/spz).
-- [ ] Karma/LOPS render support.
-- [ ] [Segment Any 3D GAussians (SAGA)](https://github.com/Jumpat/SegAnyGAussians) or similar segmentation integration.
-- [ ] Custom python viewer states + "magic wand" functionality (e.g., spatial-aware selection according to attribute similarity).
-- [ ] PDG/TOPS support for batching and automation (probably to generate synthetic training data with `gaussian_splats_generate_training_data`).
-- [ ] Improved camera coverage generator for `gaussian_splats_generate_training_data`. The first-pass (object-centric) implementation is somewhat naive. It would also be great to have a camera coverage solver for environments.
-- [ ] Icons (the current icons are borrowed from SideFX, but custom icons would be great).
-- [ ] Promotional material (graphic design or other content you make using GSOPs).
 
 ## Acknowledgements
 Thank you, community! Your support, interest, and rapid contributions to gaussian splatting have inspired and motivated us.
