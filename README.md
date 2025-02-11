@@ -1,7 +1,9 @@
 # GSOPs 2.5 (Gaussian Splatting Operators) for SideFX Houdini 20.5
 _Now available under the **Houdini Commercial** license._
 
-[Watch the GSOPs Showcase](https://www.youtube.com/watch?v=5V7mBuVxlt4)
+[Watch the GSOPs 2.5 Sizzle Reel](https://youtu.be/9GcNrg5zAKk).
+
+[Watch the GSOPs Showcase](https://www.youtube.com/watch?v=5V7mBuVxlt4).
 
 [![GSOPs Showcase Video](help/images/gsops_pig.gif)](https://www.youtube.com/watch?v=5V7mBuVxlt4)
 
@@ -25,6 +27,7 @@ This unique combination of flexibility and ease of use is especially valuable in
 
 SideFX, the developer of Houdini, fosters innovation through its "Labs" initiative. This incubator allows for the iteration of new tools and workflows before they become mainstream. Similarly, GSOPs provides a dedicated playground for Novel View Synthesis, enabling users to craft new workflows that closely align with the final visual result while prioritizing a creative and enjoyable process.
 
+## Support Us
 **We're passionate about the potential of editable radiance fields in SideFX Houdini and we're eager to continue pushing boundaries. If you believe in this initiative or have benefitted from GSOPs, please consider supporting us. Thank you!**
 
 <a href="https://www.buymeacoffee.com/gsopsproject"><img src="help/images/support_gsops.png" alt="Support GSOPs" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
@@ -63,8 +66,9 @@ The following utilities are available to assist in the meshing process:
 ### Coarse Meshing Guidelines
 * Prefer the ADC training profile over MCMC. While MCMC works very well, especially for environments, it often creates very large splats that make the meshing process more difficult.
 * Align your model to the world origin (e.g., by using `gaussian_splats_align_by_points`).
-* Scale your model to real world reference units. You can do this by measuring the length of an object or feature in your scene before or after scanning. After aligning your scene, measure the distance between two corresponding reference points. Use the result of `(real_world_measurement / splat_measurement)` for the uniform scale value of `gaussian_splats_transform`.
-* When dealing with very noisy scenes, it's recommended to preprocess your splats (`gaussian_splats_prepare_for_vdb` and `gaussians_splats_feature_analysis` are great for this).
+* [Optional] Scale your model to real world reference units. You can do this by measuring the length of an object or feature in your scene before or after scanning. After aligning your scene, measure the distance between two corresponding reference points. Use the result of `(real_world_measurement / splat_measurement)` for the uniform scale value of `gaussian_splats_transform`.
+* When dealing with objects, it's recommended to clean / isolate your scans before meshing.
+* When dealing with noisy scenes, it's recommended to preprocess your splats (`gaussian_splats_prepare_for_vdb` and `gaussians_splats_feature_analysis` are great for this).
 * Ensure your VDBs/Meshes are watertight before transferring normals or using `splat_mesh_from_point_cloud`. Because splats are volumetric (rather than exclusively surface aligned), holes in the mesh can easily produce bad data for "interior" splats.
 * Input and Output pins have been color coded according to data type (similar to Houdini KineFX operators). Blue pins: Gaussian splats. Yellow pins: VDB. Purple pins: coarse mesh. Pink pins: other. In many cases, outputs exist for visual reference or are a simple passthrough (for network organization).
 <img src="/help/images/gsops_coarse_meshing_ux.png" alt="drawing" width="400"/>
