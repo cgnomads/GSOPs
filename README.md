@@ -1,9 +1,9 @@
 # GSOPs 2.5 (Gaussian Splatting Operators) for SideFX Houdini 20.5
 _Now available under the **Houdini Commercial** license._
 
-[Watch the GSOPs 2.5 Sizzle Reel](https://youtu.be/9GcNrg5zAKk).
+[Watch the GSOPs 2.5 Sizzle Reel](https://youtu.be/9GcNrg5zAKk)
 
-[Watch the GSOPs Showcase](https://www.youtube.com/watch?v=5V7mBuVxlt4).
+[Watch the GSOPs Showcase](https://www.youtube.com/watch?v=5V7mBuVxlt4)
 
 [![GSOPs Showcase Video](help/images/gsops_pig.gif)](https://www.youtube.com/watch?v=5V7mBuVxlt4)
 
@@ -122,7 +122,7 @@ With GSOPs 2.5, spherical harmonics have been refactored to streamline data acce
 ## Known Issues
 We consider GSOPs to be a professional-grade prototyping toolset. It is not free from error, and the user experience could be improved in many areas. Here are some of the known issues:
 
-* ~~Rotating a splat model will not update spherical harmonics data accordingly. As a result, view-dependent lighting effects will not behave correctly in exported models.~~ **This has been fixed in GSOPs 2.5!**
+* **[FIXED]** ~~Rotating a splat model will not update spherical harmonics data accordingly. As a result, view-dependent lighting effects will not behave correctly in exported models.~~
 * Rendering the viewport with `gaussian_splats_generate_training_data` will always use the viewport aspect ratio as the camera resolution aspect ratio (with a maxmium dominant resolution of 720 in Houdini Apprentice). This is because I could not find a python hook to set the viewport size. As a workaround, be sure to set your viewport size manually before performing viewport renders. As an alternative, you can render the scene using [flipbook](https://www.sidefx.com/docs/houdini/render/flipbook.html).
 * If the `gaussian_splats_generate_training_data` `render_viewport` button does not work, change your Houdini layout to the default `Build` layout. This is due to a hardcoded viewport panel reference.
 * It is possible to create bad export data when using the `unpack` feature of `gaussian_splats_visualize_boxes`. As a workaround, avoid having this node in any data stream leading to an export node.
