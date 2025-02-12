@@ -1,8 +1,8 @@
 {
-    "date" : "2025-02-05",
+    "date" : "2025-02-12",
     "popup" : {
         "title" : "GSOPs 2.5",
-        "content" : "Thank you for installing GSOPs version 2.5.0. We are really proud of this update, including many feeatures and improvements. We hope you enjoy it!",
+        "content" : "Thank you for installing GSOPs version 2.5.0, the most versatile Gaussian Splats editing toolset to date. This update includes coarse meshing utilities, improvements to spherical harmonics, and new content and examples.\n\nGSOPs is actively used by professional artists and studios worldwide, and we are committed to keeping GSOPs free and open source. Your support helps sustain its development.\n\nPlease enjoy!",
         "buttons" : [
             {
                 "text" : "Support GSOPs",
