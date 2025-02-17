@@ -43,7 +43,7 @@ For more information regarding any of the following nodes, please reference the 
 * **[UPDATED + BREAKING CHANGES]** `gaussian_splats_export`: Export Houdini Gaussian splat geometry to disk, converting all relevant point data to native Gaussian splat attributes in the process. _Updated to support SH refactor._
 * `gaussian_splats_feature_analysis`: Perform statistical analysis of Gaussian splat models.
 * **[NEW]** `gaussian_splats_from_polygons`: Create Gaussian splats (without training) from surfaces or volumes for splat infill and other creative effects.
-* `gaussian_splats_generate_training_data`: Generate synthetic data suitable for training clean Gaussian splat models. 
+* **[UPDATED + BREAKING CHANGES]** `gaussian_splats_generate_training_data`: Generate synthetic data suitable for training clean Gaussian splat models. _Now supports rendering with Karma and other 3rd party renderers._ 
 * `gaussian_splats_hald_clut`: Apply color adjustment to splats based on [Hald Color Look-Up Tables](https://www.quelsolaar.com/technology/clut.html).
 * **[UPDATED + BREAKING CHANGES]** `gaussian_splats_import`: Load a trained Gaussian splat model, converting all relevant data to native Houdini point attributes. _Updated to support SH refactor and downstream edits._
 * `gaussian_splats_import_cameras`: Import a cameras.json file generated as a result of training Gaussian splat models (via Inria's implementation).
@@ -114,6 +114,7 @@ With GSOPs 2.5, spherical harmonics have been refactored to streamline data acce
 
 ## Synthetic Training Data
 * You can use Houdini renders from procedural and manually generated camera poses (in COLMAP format) to convert your CG scenes to 3D Gaussian Splats. With GSOPs 2.0, png image support has been added to the `generate_training_data` SOP. This means you can train alpha-masked 3DGS models, producing cleaner reconstructions.
+* The `gaussian_splats_generate_training_data` SOP has been updated in GSOPs 2.5 to support rendering in Karma and other 3rd party renderers. Previously, the render camera was constrained via Python, which caused evaluation issues in other Houdini contexts. The render camera is now constrained via channel expressions, avoiding this race condition. 
 
 ## Help
 * All digital assets exist in the SOPS context and (most) have their own help card documentation.
