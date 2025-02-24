@@ -81,4 +81,5 @@ def show_delayed_popup():
     hou.ui.removeEventLoopCallback(show_delayed_popup)
 
 
-hou.ui.addEventLoopCallback(show_delayed_popup)
+if hou.isUIAvailable():
+    hou.ui.addEventLoopCallback(show_delayed_popup)
