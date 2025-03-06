@@ -5,7 +5,11 @@ _Now available under the **Houdini Commercial** license._
 
 [Watch the GSOPs Showcase](https://www.youtube.com/watch?v=5V7mBuVxlt4)
 
+[How to install](https://github.com/david-rhodes/GSOPs/blob/rubendhz/gsops-installer-hip/README.md#using-installer-hip-file-recommended)
+
 [![GSOPs Showcase Video](help/images/gsops_pig.gif)](https://www.youtube.com/watch?v=5V7mBuVxlt4)
+
+
 
 ## About
 GSOPs is a collaborative project from [David Rhodes](https://www.linkedin.com/in/davidarhodes/) and [Ruben Diaz](https://www.linkedin.com/in/rubendz/). It is comprised of a [viewport renderer](https://github.com/rubendhz/houdini-gsplat-renderer), [example files](https://github.com/david-rhodes/GSOPs/tree/develop/hip), and several digital assets to assist with common I/O and editing operations for 3DGS content. GSOPs is developed in our personal time and is provided as-is. 
@@ -96,12 +100,17 @@ With GSOPs 2.5, spherical harmonics have been refactored to streamline data acce
 * If you're interested in what you've seen and would like to discuss innovation/R&D collaboration opportunities, please contact us.
 
 ## Installation
+### Using installer hip file (recommended)
 1. For the latest and greatest, clone this repository (`develop` branch). Alternatively, for a more stable build, download the [latest release](https://github.com/david-rhodes/GSOPs/releases).
     * **Either clone with `--recurse-submodules`, or run `git submodule init` followed by `git submodule update`**. 
     * If you have separately installed [houdini-gsplat-renderer](https://github.com/rubendhz/houdini-gsplat-renderer), **it is recommneded to delete existing compiled binaries to avoid plug-in conflicts!**
+2. Open the `hip/gsops_installer.hip` file in Houdini, select the  `INSTALL_GSOPS` node and click `INSTALL`.
+
+### Manual install
+1. Same as point 1 above
 2. Copy the `packages` directory found in the repository root, and paste it in the $HOUDINI_USER_PREF_DIR folder. [More information here.](https://www.sidefx.com/docs/houdini/ref/plugins.html)
 3. Open the GSOPs_20.5.json file inside the `packages` directory you just pasted. Modify the "GSOPS" path found inside to the the location used in step one.
-4. Install the latest [SideFX Labs](https://www.sidefx.com/products/sidefx-labs/) release. 
+
 
 ## Getting Started
 1. Open a few example scenes from the `hip` directory. Use these to validate your installation and better understand Gaussian splatting workflows.
