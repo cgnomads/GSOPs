@@ -108,10 +108,9 @@ With GSOPs 2.5, spherical harmonics have been refactored to streamline data acce
 2. Open the `hip/gsops_installer.hip` file in Houdini, select the  `INSTALL_GSOPS` node and click `INSTALL`.
 3. **[Optional + Recommended]** Install the latest SideFX Labs release.
  
-### Manual install
-1. Same as point 1 above
-2. Copy the `packages` directory found in the repository root, and paste it in the $HOUDINI_USER_PREF_DIR folder. [More information here.](https://www.sidefx.com/docs/houdini/ref/plugins.html)
-3. Open the GSOPs_20.5.json file inside the `packages` directory you just pasted. Modify the "GSOPS" path found inside to the the location used in step one.
+### Manual install (not recommended, replaces Installation step 2)
+- Copy the `packages` directory found in the repository root, and paste it in the $HOUDINI_USER_PREF_DIR folder. [More information here.](https://www.sidefx.com/docs/houdini/ref/plugins.html)
+- Open the GSOPs_20.5.json file inside the `packages` directory you just pasted. Modify the "GSOPS" path found inside to the the location used in step one.
 
 ## Getting Started
 1. Open a few example scenes from the `hip` directory. Use these to validate your installation and better understand Gaussian splatting workflows.
