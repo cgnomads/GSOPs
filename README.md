@@ -9,8 +9,6 @@ _Now available under the **Houdini Commercial** license._
 
 [![GSOPs Showcase Video](help/images/gsops_pig.gif)](https://www.youtube.com/watch?v=5V7mBuVxlt4)
 
-
-
 ## About
 GSOPs is a collaborative project from [David Rhodes](https://www.linkedin.com/in/davidarhodes/) and [Ruben Diaz](https://www.linkedin.com/in/rubendz/). It is comprised of a [viewport renderer](https://github.com/rubendhz/houdini-gsplat-renderer), [example files](https://github.com/david-rhodes/GSOPs/tree/develop/hip), and several digital assets to assist with common I/O and editing operations for 3DGS content. GSOPs is developed in our personal time and is provided as-is. 
 
@@ -100,16 +98,13 @@ With GSOPs 2.5, spherical harmonics have been refactored to streamline data acce
 * If you're interested in what you've seen and would like to discuss innovation/R&D collaboration opportunities, please contact us.
 
 ## Installation
-1. **Clone this repository** (for the latest and greatest, get the `develop` branch or, **alternatively**, get the [latest stable release](https://github.com/david-rhodes/GSOPs/releases)).
-    * **Using Git CLI:** clone **recursively** with `--recurse-submodules`, **OR** run `git submodule init` followed by `git submodule update`
-    * **[Alternative] Using [GitHub Desktop](https://desktop.github.com/download/)**, submodules will automatically be initialized.
-    * ‼️ Note: If you had previously installed [houdini-gsplat-renderer](https://github.com/rubendhz/houdini-gsplat-renderer) separately, **it is recommended to delete existing compiled binaries to avoid plug-in conflicts.**
-2. **Install the Houdini package** by opening the `hip/gsops_installer.hip` file in Houdini, selecting the `INSTALL_GSOPS` node and clicking `INSTALL`.
+1. Clone this repository (use the `develop` branch for the latest and greatest).
+    * **[Using Git CLI]** Clone **recursively** with `--recurse-submodules`, **OR** run `git submodule init` followed by `git submodule update`.
+    * **[Using [GitHub Desktop](https://desktop.github.com/download/)]** Clone repository with URL: `https://github.com/david-rhodes/GSOPs.git` (submodules will automatically be initialized).
+2. Install and configure the GSOPs Houdini package by opening the `hip/gsops_installer.hip` file in Houdini, selecting the `INSTALL_GSOPS` node and clicking `INSTALL`.
 
    <img width="548" alt="419229706-0c526dae-0ed9-4ab0-b986-9924f29c1481" src="https://github.com/user-attachments/assets/a0a08d0a-f6ea-491b-9419-a2e9e0fc706b" />
-
-3. [Optional + Recommended] Install the latest SideFX Labs release.
-
+3. **[Optional]** Install the latest SideFX Labs release.
 
 ## Getting Started
 1. Open a few example scenes from the `hip` directory. Use these to validate your installation and better understand Gaussian splatting workflows.
