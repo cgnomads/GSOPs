@@ -5,7 +5,7 @@ _Now available under the **Houdini Commercial** license._
 
 [Watch the GSOPs Showcase](https://www.youtube.com/watch?v=5V7mBuVxlt4)
 
-[How to install](https://github.com/david-rhodes/GSOPs/blob/rubendhz/gsops-installer-hip/README.md#installation)
+[How to Install](https://github.com/david-rhodes/GSOPs?tab=readme-ov-file#installation)
 
 [![GSOPs Showcase Video](help/images/gsops_pig.gif)](https://www.youtube.com/watch?v=5V7mBuVxlt4)
 
