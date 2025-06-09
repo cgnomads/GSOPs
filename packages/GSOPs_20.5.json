@@ -12,9 +12,9 @@
         {
             "GSPLAT_RENDERER": 
             [
-                { "houdini_os == 'windows'" : "$GSOPS/houdini-gsplat-renderer/compiled/windows/20.5" },
-                { "houdini_os == 'linux'" : "$GSOPS/houdini-gsplat-renderer/compiled/linux/20.5" },
-                { "houdini_os == 'macos'" : "$GSOPS/houdini-gsplat-renderer/compiled/macos/20.5" }
+                { "houdini_os == 'windows'" : "$GSOPS/plugin/bin/windows/20.5" },
+                { "houdini_os == 'linux'" : "$GSOPS/plugin/bin/linux/20.5" },
+                { "houdini_os == 'macos'" : "$GSOPS/plugin/bin/macos/20.5" }
             ]
         }
     ],

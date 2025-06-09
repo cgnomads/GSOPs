@@ -1,0 +1,6 @@
+# Ignore everything
+*
+
+# except for these
+!.gitignore
+!.download_data.txt

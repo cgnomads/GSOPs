@@ -38,10 +38,11 @@ SideFX, the developer of Houdini, fosters innovation through its "Labs" initiati
 1. Clone this repository (use the `develop` branch for the latest and greatest).
     * **[Using Git CLI]** Clone **recursively** with `--recurse-submodules`, **OR** run `git submodule init` followed by `git submodule update`.
     * **[Using [GitHub Desktop](https://desktop.github.com/download/)]** Clone repository with URL: `https://github.com/david-rhodes/GSOPs.git` (submodules will automatically be initialized).
-2. Install and configure the GSOPs Houdini package by opening the `hip/gsops_installer.hip` file in Houdini, selecting the `INSTALL_GSOPS` node and clicking `INSTALL`.
+2. Install and configure the GSOPs Houdini package by opening the `hip/gsops_installer.hip` file in Houdini, selecting the `INSTALL_GSOPS` node and clicking `INSTALL`. Feel free to also click the "RETRIEVE SAMPLE DATA" button to download sample Gaussian Splat models (these are used in the example hip files provided).
 
    <img width="548" alt="419229706-0c526dae-0ed9-4ab0-b986-9924f29c1481" src="https://github.com/user-attachments/assets/a0a08d0a-f6ea-491b-9419-a2e9e0fc706b" />
 3. **[Optional]** Install the latest SideFX Labs release.
+
 
 ## Getting Started
 1. Open a few example scenes from the `hip` directory. Use these to validate your installation and better understand Gaussian splatting workflows.

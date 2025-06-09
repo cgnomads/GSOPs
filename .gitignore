@@ -1,5 +1,3 @@
-*.pyc
-.DS_Store
-/otls/backup/
-hip/backup/
-.gsops_state/
+.gsops_state
+*.DS_Store
+
