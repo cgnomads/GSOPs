@@ -2,6 +2,8 @@ import hou
 
 import os
 import json
+import requests
+import socket
 import inspect
 import webbrowser
 
@@ -9,10 +11,13 @@ from pathlib import Path
 from datetime import datetime
 
 
+
 GSOPS_BASE_PATH = hou.getenv("GSOPS") or str(Path(inspect.getfile(inspect.currentframe())).parent.parent)
-POPUP_INFO_FILE = os.path.join(GSOPS_BASE_PATH, "info", "popup_init.json")
-GSOPS_STATE_DIR = os.path.join(GSOPS_BASE_PATH, ".gsops_state")
+POPUP_INFO_LOCAL_FILE = os.path.join(GSOPS_BASE_PATH, "info", "popup_init.json")
+POPUP_INFO_REMOTE_FILE = "https://raw.githubusercontent.com/david-rhodes/GSOPs/refs/heads/rubendhz/test-popup/info/popup_init.json"
+GSOPS_STATE_DIR = os.path.join(GSOPS_BASE_PATH, ".gsops")
 POPUP_STATE_FILE = os.path.join(GSOPS_STATE_DIR, "popup_init.json")
+POPUP_STATE_FILE_FALLBACK = os.path.join(os.path.join(GSOPS_BASE_PATH, ".gsops_state"), "popup_init.json")
 
 DATE_FORMAT = "%Y-%m-%d"
 
@@ -21,6 +26,12 @@ def _ensure_state_dir():
     os.makedirs(GSOPS_STATE_DIR, exist_ok=True)
 
 
+def _save_json(file_path, data):
+    _ensure_state_dir()
+    with open(file_path, "w") as f:
+        json.dump(data, f, indent=4)
+
+        
 def _load_json(file_path):
     if os.path.exists(file_path):
         with open(file_path, "r") as f:
@@ -28,22 +39,48 @@ def _load_json(file_path):
     return {}
 
 
-def _save_json(file_path, data):
-    _ensure_state_dir()
-    with open(file_path, "w") as f:
-        json.dump(data, f, indent=4)
-
-
-def _parse_date(date_str):
+def _check_connection(host="8.8.8.8", port=53, timeout=1.0): # Default is Google's DNS server
     try:
-        return datetime.strptime(date_str, DATE_FORMAT) if date_str else None
-    except ValueError:
-        return None  # Fallback if the date format is incorrect
+        socket.setdefaulttimeout(timeout)
+        socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect((host, port))
+        return True
+    except socket.error:
+        return False
 
 
-def _should_show_popup():
+def _fetch_json_from_url(url):
+    """Fetch JSON from a GitHub URL if online."""
+    if not _check_connection():
+        return None
+    try:
+        response = requests.get(url, timeout=5)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.HTTPError as e:
+        print(f"popup_init : HTTP error occurred: {e}")
+    except requests.exceptions.RequestException as e:
+        print(f"popup_init : Request error occurred: {e}")
+    except ValueError as e:
+        print(f"popup_init : Failed to parse JSON: {e}")
+    return None
+
+
+def _retrieve_popup():
+    def _parse_date(date_str):
+        try:
+            return datetime.strptime(date_str, DATE_FORMAT) if date_str else None
+        except ValueError:
+            return None
+        
     state = _load_json(POPUP_STATE_FILE)
-    popup_data = _load_json(POPUP_INFO_FILE)
+    if not state:
+        # try to retrieve state from legacy location
+        state = _load_json(POPUP_STATE_FILE_FALLBACK)
+        
+    if not _check_connection():
+        popup_data = _load_json(POPUP_INFO_LOCAL_FILE)
+    else:
+        popup_data = _fetch_json_from_url(POPUP_INFO_REMOTE_FILE)
 
     popup_date = _parse_date(popup_data.get("date"))
     state_date = _parse_date(state.get("last_seen_date"))
@@ -58,7 +95,7 @@ def _should_show_popup():
 
 
 def _show_delayed_popup():
-    popup = _should_show_popup()
+    popup = _retrieve_popup()
     if not popup:
         hou.ui.removeEventLoopCallback(_show_delayed_popup)
         return

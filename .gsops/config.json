@@ -1,0 +1,9 @@
+{
+    "ophide_levels": {
+        "0": {
+            "Sop": [
+                "*gaussian_splats_mirror*"
+            ]
+        }
+    }
+}

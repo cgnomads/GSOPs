@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <toolshelf name="gsops_shelf" label="GSOPs">
+    <memberTool name="download_gsops_sample_data"/>
+    <memberTool name="support_gsops"/>
+    <memberTool name="join_gsops_discord"/>
+    <memberTool name="install_license_key"/>
+  </toolshelf>
+
+  <tool name="download_gsops_sample_data" label="Download Sample Data" icon="SOP_file">
+    <script scriptType="python"><![CDATA[from gsops.sample_data import download
+
+gsops_path = hou.text.expandString("$GSOPS")
+download_data_file_path = f"{gsops_path}/data/.download_data.txt"
+output_dir = f"{gsops_path}/data"
+
+# Ask user if they really want to proceed...
+response = hou.ui.displayMessage(
+    "It might take a few minutes to download data, are you sure you want to continue?",
+    buttons=("Download", "Cancel"),
+    default_choice=0,
+    close_choice=1,
+    title="Confirm Download",
+    severity=hou.severityType.Message
+)
+
+if response == 0:
+    downloaded, error = download(download_data_file_path, output_dir)
+    
+    if not error and not downloaded:
+        hou.ui.displayMessage(
+            f"Data already present. Delete {gsops_path}/data/splats content if you want to do a fresh download.",
+            buttons=("Got it",),
+            default_choice=0,
+            close_choice=0,
+            title="Download Complete",
+            severity=hou.severityType.Message
+        )
+]]></script>
+  </tool>
+
+  <tool name="support_gsops" label="Support GSOPs" icon="MISC_present">
+    <script scriptType="python"><![CDATA[import webbrowser
+url = "https://buymeacoffee.com/gsopsproject"
+webbrowser.open(url)
+]]></script>
+  </tool>
+
+  <tool name="join_gsops_discord" label="Join Discord Community" icon="SOP_crowdsource">
+    <script scriptType="python"><![CDATA[import webbrowser
+url = "https://discord.gg/bwsvvRYNJa"
+webbrowser.open(url)]]></script>
+  </tool>
+
+  <tool name="install_license_key" label="Install License Key" icon="SOP_cache">
+    <script scriptType="python"><![CDATA[import hou
+from PySide2 import QtWidgets, QtCore
+from pathlib import Path
+
+import gsops.authentication as gsops_auth 
+
+
+POPUP_WINDOW_TITLE = "Install GSOPs License Key"
+
+
+# Check if window exists already
+for widget in QtWidgets.QApplication.allWidgets():
+    if isinstance(widget, QtWidgets.QDialog) and widget.windowTitle() == POPUP_WINDOW_TITLE:
+        widget.close()
+
+class GSOPsLicenseInstaller(QtWidgets.QDialog):
+    def __init__(self, parent=None):
+        super(GSOPsLicenseInstaller, self).__init__(parent)
+        self.setWindowTitle(POPUP_WINDOW_TITLE)
+        self.setMinimumWidth(300)
+
+        # Layouts
+        layout = QtWidgets.QVBoxLayout()
+        form_layout = QtWidgets.QFormLayout()
+
+        # Fields
+        self.email_field = QtWidgets.QLineEdit()
+        self.license_field = QtWidgets.QLineEdit()
+        self.license_field.setEchoMode(QtWidgets.QLineEdit.Password)
+
+        form_layout.addRow("Email:", self.email_field)
+        form_layout.addRow("License Key:", self.license_field)
+        layout.addLayout(form_layout)
+
+        # Button
+        self.install_button = QtWidgets.QPushButton("Install")
+        self.install_button.clicked.connect(self.install_license)
+        layout.addWidget(self.install_button)
+
+        self.setLayout(layout)
+        
+        installed_lic_email, installed_lic_key = gsops_auth.retrieve_installed_license_details()
+        if installed_lic_email and installed_lic_key:
+            self.email_field.setText(installed_lic_email)
+            self.license_field.setText(installed_lic_key)
+        
+    def install_license(self):
+        email = self.email_field.text()
+        license_key = self.license_field.text()
+        if email and license_key:
+            gsops_auth.save_license_details(email, license_key)
+            auth_level = gsops_auth.authenticate_and_setup()
+            if auth_level:
+                hou.ui.displayMessage(f"License key installed for {email}")
+                self.close()
+            else:
+                hou.ui.displayMessage("Authentication failed.")
+        else:
+            hou.ui.displayMessage("Both fields must be filled.", severity=hou.severityType.Warning)
+
+if gsops_auth.authentication_level():
+  hou.ui.displayMessage("Key is already installed.")
+else:
+  dialog = GSOPsLicenseInstaller(hou.ui.mainQtWindow())
+  dialog.setAttribute(QtCore.Qt.WA_DeleteOnClose)
+  dialog.show()
+]]></script>
+  </tool>
+</shelfDocument>
