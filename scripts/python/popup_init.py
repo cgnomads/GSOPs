@@ -14,7 +14,7 @@ from datetime import datetime
 
 GSOPS_BASE_PATH = hou.getenv("GSOPS") or str(Path(inspect.getfile(inspect.currentframe())).parent.parent)
 POPUP_INFO_LOCAL_FILE = os.path.join(GSOPS_BASE_PATH, "misc", "info", "popup_init.json")
-POPUP_INFO_REMOTE_FILE = "https://raw.githubusercontent.com/cgnomads/GSOPs/refs/heads/main/misc/info/popup_init.json"
+POPUP_INFO_REMOTE_FILE = "https://raw.githubusercontent.com/cgnomads/GSOPs/refs/heads/develop/misc/info/popup_init.json"
 GSOPS_STATE_DIR = os.path.join(GSOPS_BASE_PATH, ".gsops")
 POPUP_STATE_FILE = os.path.join(GSOPS_STATE_DIR, "popup_init.json")
 POPUP_STATE_FILE_FALLBACK = os.path.join(os.path.join(GSOPS_BASE_PATH, ".gsops_state"), "popup_init.json")
