@@ -34,7 +34,7 @@ def save_license_details(email, license_key):
 
 def authentication_level():
     if hasattr(hou.session, "gsops") and "auth_level" in hou.session.gsops:
-        return hou.session.gsops["auth_level"] > 0
+        return hou.session.gsops["auth_level"]
     return 0
 
 def authenticate():
@@ -48,13 +48,13 @@ def authenticate():
         return 0
 
     email, key = retrieve_installed_license_details()
-    # print(f"GSOPs autentication for user \"{email}\" started...")
+    # print(f"GSOPs Houdini session autentication for user \"{email}\"")
 
     try:
         response = requests.post(
             GSOPS_WEBHOOK_URL,
             json={"email": email, "key": key},
-            timeout=2
+            timeout=5
         )
         response.raise_for_status()  # Raises HTTPError if not 2xx
         data = response.json()
@@ -64,7 +64,7 @@ def authenticate():
             if not hasattr(hou.session, "gsops"):
                 hou.session.gsops = {}
             hou.session.gsops["auth_level"] = auth_level
-            # print("Authentication successful!")
+            # print("GSOPs Houdini session authentication success.")
             return auth_level
         # else:
         #     print(f"Authentication failed: {data.get('error', 'Unknown error')}")

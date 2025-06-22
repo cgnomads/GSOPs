@@ -111,7 +111,7 @@ class GSOPsLicenseInstaller(QtWidgets.QDialog):
             gsops_auth.save_license_details(email, license_key)
             auth_level = gsops_auth.authenticate_and_setup()
             if auth_level:
-                hou.ui.displayMessage(f"License key installed for {email}")
+                hou.ui.displayMessage(f"License key installed for {email}. It's recommended you restart Houdini.")
                 self.close()
             else:
                 hou.ui.displayMessage("Authentication failed.")

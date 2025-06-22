@@ -19,7 +19,8 @@ def _attempt_authentication_and_setup():
 
 def init():
     if hou.isUIAvailable():
-        _attempt_authentication_and_setup()
         _add_gsops_shelf()
+        _attempt_authentication_and_setup()
+        
 
 
