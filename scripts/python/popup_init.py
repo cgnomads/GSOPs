@@ -13,8 +13,8 @@ from datetime import datetime
 
 
 GSOPS_BASE_PATH = hou.getenv("GSOPS") or str(Path(inspect.getfile(inspect.currentframe())).parent.parent)
-POPUP_INFO_LOCAL_FILE = os.path.join(GSOPS_BASE_PATH, "info", "popup_init.json")
-POPUP_INFO_REMOTE_FILE = "https://raw.githubusercontent.com/david-rhodes/GSOPs/refs/heads/rubendhz/test-popup/info/popup_init.json"
+POPUP_INFO_LOCAL_FILE = os.path.join(GSOPS_BASE_PATH, "misc", "info", "popup_init.json")
+POPUP_INFO_REMOTE_FILE = "https://raw.githubusercontent.com/cgnomads/GSOPs/refs/heads/main/misc/info/popup_init.json"
 GSOPS_STATE_DIR = os.path.join(GSOPS_BASE_PATH, ".gsops")
 POPUP_STATE_FILE = os.path.join(GSOPS_STATE_DIR, "popup_init.json")
 POPUP_STATE_FILE_FALLBACK = os.path.join(os.path.join(GSOPS_BASE_PATH, ".gsops_state"), "popup_init.json")
@@ -57,12 +57,14 @@ def _fetch_json_from_url(url):
         response.raise_for_status()
         return response.json()
     except requests.exceptions.HTTPError as e:
-        print(f"popup_init : HTTP error occurred: {e}")
+        # print(f"popup_init : HTTP error occurred: {e}")
+        return None
     except requests.exceptions.RequestException as e:
-        print(f"popup_init : Request error occurred: {e}")
+        # print(f"popup_init : Request error occurred: {e}")
+        return None
     except ValueError as e:
-        print(f"popup_init : Failed to parse JSON: {e}")
-    return None
+        # print(f"popup_init : Failed to parse JSON: {e}")
+        return None
 
 
 def _retrieve_popup():
@@ -71,16 +73,17 @@ def _retrieve_popup():
             return datetime.strptime(date_str, DATE_FORMAT) if date_str else None
         except ValueError:
             return None
-        
+    
     state = _load_json(POPUP_STATE_FILE)
     if not state:
         # try to retrieve state from legacy location
         state = _load_json(POPUP_STATE_FILE_FALLBACK)
-        
-    if not _check_connection():
-        popup_data = _load_json(POPUP_INFO_LOCAL_FILE)
-    else:
+
+    popup_data = None  
+    if _check_connection():
         popup_data = _fetch_json_from_url(POPUP_INFO_REMOTE_FILE)
+    if not popup_data:    
+        popup_data = _load_json(POPUP_INFO_LOCAL_FILE)
 
     popup_date = _parse_date(popup_data.get("date"))
     state_date = _parse_date(state.get("last_seen_date"))
