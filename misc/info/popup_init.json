@@ -1,11 +1,16 @@
 {
     "date" : "2025-06-23",
     "popup" : {
-        "title" : "GSOPs 2.6",
-        "content" : "Thank you for installing GSOPs version 2.6.0, the most versatile Gaussian Splats editing toolset. Among other things, this update includes support for 2DGS, Solaris, and model mirroring.\n\nGSOPs is actively used by professional artists and studios worldwide, and we are committed to keeping GSOPs free and open source. Your support helps sustain its development.\n\nPlease enjoy!",
+        "title" : "GSOPs 2.6 by CG Nomads",
+        "content" : "Thank you for installing GSOPs, where Magic Meets Reality. This update includes support for 2DGS, Solaris, splat mirroring, and more!\n\nGSOPs is actively used by professional artists and studios worldwide, and we are committed to keeping GSOPs free and open source. Your support helps sustain its development.\n\nPlease enjoy!",
         "buttons" : [
             {
-                "text" : "Support GSOPs",
+                "text" : "Visit CG Nomads",
+                "action" : "open_url",
+                "url" : "https://www.cgnomads.com/"
+            },
+            {
+                "text" : "Support GSOPs and Unlock Early Access Features",
                 "action" : "open_url",
                 "url" : "https://buymeacoffee.com/gsopsproject"
             },
