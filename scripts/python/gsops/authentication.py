@@ -1,13 +1,11 @@
 import hou
 import inspect
 import json
-import requests
 from pathlib import Path
 
 GSOPS_PATH = hou.text.expandString("$GSOPS") or str(Path(inspect.getfile(inspect.currentframe())).parent.parent)
 GSOPS_LICENSE_FILE_PATH = f"{GSOPS_PATH}/.gsops/license"
 GSOPS_CONFIG_FILE_PATH = f"{GSOPS_PATH}/.gsops/config.json"
-GSOPS_WEBHOOK_URL = "https://flask-api-366260406836.us-central1.run.app/gsops-webhook"
 
 
 def retrieve_installed_license_details():
@@ -37,6 +35,7 @@ def authentication_level():
         return hou.session.gsops["auth_level"]
     return 0
 
+
 def authenticate():
     # Return cached auth_level if already set
     current_auth_level = authentication_level()
@@ -47,37 +46,35 @@ def authenticate():
     if not license_file_path.exists():
         return 0
 
-    email, key = retrieve_installed_license_details()
-    # print(f"GSOPs Houdini session autentication for user \"{email}\"")
-
+    # geo_node = hou.node("/obj").createNode("geo", "__gsops_auth_tmp__")
+    # dummy_node = geo_node.createNode("sphere")
+    # auth_node = geo_node.createNode("GSplatAuth")
+    # auth_node.setInput(0, dummy_node)
+    # auth_node.cook(force=True)
+    # geo_node.destroy()
+    
+    geo_node = None
     try:
-        response = requests.post(
-            GSOPS_WEBHOOK_URL,
-            json={"email": email, "key": key},
-            timeout=5
-        )
-        response.raise_for_status()  # Raises HTTPError if not 2xx
-        data = response.json()
+        geo_node = hou.node("/obj").createNode("geo", "__gsops_auth_tmp__")
+        dummy_node = geo_node.createNode("sphere")
+        auth_node = geo_node.createNode("GSplatAuth")
+        auth_node.setInput(0, dummy_node)
+        try:
+            auth_node.cook(force=True)
+        except Exception:
+            # No need to print anything since there is already an error message on terminal
+            pass
+    finally:
+        if geo_node and geo_node.parent():
+            try:
+                geo_node.destroy()
+            except Exception:
+                print("GSOPs: Authentication cleanup failed.")
+                pass
 
-        auth_level = 1 if data.get("success") else 0
-        if auth_level > 0:
-            if not hasattr(hou.session, "gsops"):
-                hou.session.gsops = {}
-            hou.session.gsops["auth_level"] = auth_level
-            # print("GSOPs Houdini session authentication success.")
-            return auth_level
-        # else:
-        #     print(f"Authentication failed: {data.get('error', 'Unknown error')}")
-    except requests.exceptions.HTTPError as e:
-        pass
-        # print(f"Could not authenticate. HTTP error: {e.response.status_code}")
-    except requests.exceptions.RequestException as e:
-        pass
-        # print(f"Could not authenticate. Network error: {e}")
-    except Exception as e:
-        pass
-        # print(f"Could not authenticate. Unexpected error: {str(e)}")
-    return 0
+    if not hasattr(hou.session, "gsops"):
+        return 0
+    return hou.session.gsops["auth_level"]
 
 
 def setup_for_authentication_level(level=0):
@@ -125,3 +122,5 @@ def authenticate_and_setup():
     auth_level = authenticate()
     setup_for_authentication_level(auth_level)
     return auth_level
+
+
