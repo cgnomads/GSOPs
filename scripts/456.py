@@ -1,4 +1,4 @@
-# Same as 456.py and houdinicore.py
+# Same as 123.py and houdinicore.py
 import hou
 import importlib.util
 from pathlib import Path

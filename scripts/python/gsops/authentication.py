@@ -45,13 +45,6 @@ def authenticate():
     license_file_path = Path(GSOPS_LICENSE_FILE_PATH)
     if not license_file_path.exists():
         return 0
-
-    # geo_node = hou.node("/obj").createNode("geo", "__gsops_auth_tmp__")
-    # dummy_node = geo_node.createNode("sphere")
-    # auth_node = geo_node.createNode("GSplatAuth")
-    # auth_node.setInput(0, dummy_node)
-    # auth_node.cook(force=True)
-    # geo_node.destroy()
     
     geo_node = None
     try:
