@@ -9,11 +9,11 @@
 [![GSOPs Showcase Video](help/images/gsops_pig.gif)](https://www.youtube.com/watch?v=5V7mBuVxlt4)
 
 ## Upgrade Guide for Existing Users
-**Our licensing options have changed.** [Learn more](https://www.cgnomads/licensing).
+**Our licensing options have changed.** [Learn more](https://www.cgnomads.com/licensing).
 
-As a part of our transition to [CG Nomads](http://cgnomads.com), we have removed our submodule dependency and decoupled example data from the repository to reduce its size, improve maintainability, and streamline installation. Therefore, we recommend you perform a fresh clone and follow the [installation instructions](https://github.com/cgnomads/GSOPs?tab=readme-ov-file#installation) as normal.
+As a part of our transition to [CG Nomads](http://www.cgnomads.com), we have removed the renderer submodule dependency and decoupled example data from the repository to reduce its size, improve maintainability, and streamline installation. Therefore, we recommend you perform a fresh clone and follow the [installation instructions](https://github.com/cgnomads/GSOPs?tab=readme-ov-file#installation) as normal.
 
-## Magic Meets Reality
+## Where Magic Meets Reality
 Add ✨ to your Gaussian splatting scenes with GSOPs — the most versatile Gaussian Splats editing toolset!
 
 Gaussian splatting is a radiance field technology that turns photos and videos into high-quality 3D content with view-dependent effects and fast rendering. Gaussian Splatting Operators (GSOPs) is a plug-in for SideFX Houdini that grants artists total creative control over Gaussian splatting scenes.
@@ -60,7 +60,7 @@ Need support, private modifications, or commercial usage? Custom site licenses t
 3. The installer will ask if you want to download sample data. Select "Yes" if you're interested in exploring our example content (recommended).
 4. **[Optional]** Install the latest SideFX Labs release.
 
-### Early Access Subscribers
+### Early Access Supporters
 Activate your license using the GSOPs shelf button.    
 
 ![GSOPs Shelf](/help/images/gsops_shelf.png)
@@ -89,8 +89,8 @@ GSOPs is packed with features. For more information regarding any of the nodes s
 ## [NEW] Support for 2DGS
 The `Gaussian Splats Import` SOP now accepts [2DGS](https://github.com/hbb1/2d-gaussian-splatting) models!
 
-## [NEW & EARLY ACCESS] Support for Karma
-We now provide a `Gaussian Splats Import` LOP node to simplify rendering and relighting Splats with Karma. Additionally, the `Gaussian Splats Evaluate Spherical Harmonics` has been updated to bake spherical harmonics to the color attribute (`v@Cd`) for raytracing.
+## [NEW & EARLY ACCESS] Support for Solaris & Karma
+We now provide a `Gaussian Splats Import` LOP node to simplify rendering and relighting Splats in Solaris. Additionally, the `Gaussian Splats Evaluate Spherical Harmonics` has been updated to bake spherical harmonics to the color attribute (`v@Cd`) for raytracing. Check out the `solaris.hip` example to learn more.
 
 ## Coarse Meshing
 GSOPs 2.5 introduces dependency-free coarse meshing for 3D Gaussian Splatting. Coarse meshes are an effective "sparse node graph" for splat editing operations.
@@ -99,7 +99,7 @@ GSOPs 2.5 introduces dependency-free coarse meshing for 3D Gaussian Splatting. C
 * [Coarse Meshing Guidelines](https://github.com/cgnomads/GSOPs/wiki/Coarse-Meshing-Guidelines)
 
 ## Splat Animation Sequences
-* It's possible to export splat animation sequences (one .ply per file). You can load and render these in [Postshot](https://www.jawset.com/), [SuperSplat](https://playcanvas.com/supersplat/editor/), [Brush](https://github.com/ArthurBrussee/brush), and [Unity](https://github.com/cgnomads/GSOPs/blob/develop/extra/UnityGaussianSplatting/INSTRUCTIONS.md).
+* It's possible to create, import, edit, and export splat animation sequences (one .ply per file). You can load and render these in [Postshot](https://www.jawset.com/), [SuperSplat](https://playcanvas.com/supersplat/editor/), [Brush](https://github.com/ArthurBrussee/brush), and [Unity](https://github.com/cgnomads/GSOPs/blob/develop/extra/UnityGaussianSplatting/INSTRUCTIONS.md).
 
 ## Synthetic Training Data
 * You can use Houdini renders from procedural and manually generated camera poses (in COLMAP format) to convert your CG scenes to 3D Gaussian Splats. The `generate_training_data` SOP supports PNG image output, which enables the trainining of alpha-masked 3DGS models, which produces cleaner reconstructions.
