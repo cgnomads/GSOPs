@@ -24,7 +24,7 @@ Among its many capabilities, GSOPs is effective at isolating objects, eliminatin
 
 Developed by [David Rhodes](https://www.linkedin.com/in/davidarhodes/) and [Ruben Diaz](https://www.linkedin.com/in/rubendz/), GSOPs is now hosted under [CG Nomads](http://www.cgnomads.com).
 
-For more examples of GSOPs in action, check us out on [LinkedIn](https://www.linkedin.com/feed/hashtag/?keywords=gsops) and [YouTube](https://www.youtube.com/playlist?list=PLh6-L_XjgKCv7PwEivhQJqEOCfqiY6pKg).
+Check out GSOPs on [LinkedIn](https://www.linkedin.com/feed/hashtag/?keywords=gsops) and [YouTube](https://www.youtube.com/playlist?list=PLh6-L_XjgKCv7PwEivhQJqEOCfqiY6pKg) for more examples.
 
 🥉 GSOPs won 3rd place in the [H20 SIDEFX LABS Tech Art Challenge](https://www.sidefx.com/community-main-menu/contests-jams/h20-tech-art-challenge/).
 
@@ -78,7 +78,7 @@ Activate your license using the GSOPs shelf button.
 * Linux is not officially supported.
 * Please adhere to the [SideFX Houdini License Agreement](https://www.sidefx.com/legal/license-agreement/).
 * GSOPs can generate Gaussian splat training data, but it **cannot** train models. If you want to train models locally, please see [3D Gaussian Splatting for Real-Time Radiance Field Rendering](https://github.com/graphdeco-inria/gaussian-splatting), [Postshot](https://www.jawset.com/), or [Brush](https://github.com/ArthurBrussee/brush) (a great option for Mac users).
-* If you're interested in what you've seen and would like to discuss innovation/R&D collaboration opportunities, please [contact us(https://www.cgnomads.com/about-us).
+* If you're interested in what you've seen and would like to discuss innovation/R&D collaboration opportunities, please [contact us](https://www.cgnomads.com/about-us).
 * GSOPs is developed in our personal time and is provided as-is. 
 
 ## GSOPs Nodes
