@@ -1,13 +1,11 @@
-## GSOPs 2.0 for SideFX Houdini, Copyright (c) David Rhodes and Ruben Diaz
-
-GNU AFFERO GENERAL PUBLIC LICENSE
-Version 3, 19 November 2007
+                    GNU AFFERO GENERAL PUBLIC LICENSE
+                       Version 3, 19 November 2007
 
  Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
  Everyone is permitted to copy and distribute verbatim copies
  of this license document, but changing it is not allowed.
 
-Preamble
+                            Preamble
 
   The GNU Affero General Public License is a free, copyleft license for
 software and other kinds of works, specifically designed to ensure
@@ -58,7 +56,7 @@ this license.
   The precise terms and conditions for copying, distribution and
 modification follow.
 
-TERMS AND CONDITIONS
+                       TERMS AND CONDITIONS
 
   0. Definitions.
 
@@ -201,26 +199,26 @@ and you may offer support or warranty protection for a fee.
 produce it from the Program, in the form of source code under the
 terms of section 4, provided that you also meet all of these conditions:
 
-a) The work must carry prominent notices stating that you modified
-it, and giving a relevant date.
+    a) The work must carry prominent notices stating that you modified
+    it, and giving a relevant date.
 
-b) The work must carry prominent notices stating that it is
-released under this License and any conditions added under section
-7.  This requirement modifies the requirement in section 4 to
-"keep intact all notices".
+    b) The work must carry prominent notices stating that it is
+    released under this License and any conditions added under section
+    7.  This requirement modifies the requirement in section 4 to
+    "keep intact all notices".
 
-c) You must license the entire work, as a whole, under this
-License to anyone who comes into possession of a copy.  This
-License will therefore apply, along with any applicable section 7
-additional terms, to the whole of the work, and all its parts,
-regardless of how they are packaged.  This License gives no
-permission to license the work in any other way, but it does not
-invalidate such permission if you have separately received it.
+    c) You must license the entire work, as a whole, under this
+    License to anyone who comes into possession of a copy.  This
+    License will therefore apply, along with any applicable section 7
+    additional terms, to the whole of the work, and all its parts,
+    regardless of how they are packaged.  This License gives no
+    permission to license the work in any other way, but it does not
+    invalidate such permission if you have separately received it.
 
-d) If the work has interactive user interfaces, each must display
-Appropriate Legal Notices; however, if the Program has interactive
-interfaces that do not display Appropriate Legal Notices, your
-work need not make them do so.
+    d) If the work has interactive user interfaces, each must display
+    Appropriate Legal Notices; however, if the Program has interactive
+    interfaces that do not display Appropriate Legal Notices, your
+    work need not make them do so.
 
   A compilation of a covered work with other separate and independent
 works, which are not by their nature extensions of the covered work,
@@ -239,46 +237,46 @@ of sections 4 and 5, provided that you also convey the
 machine-readable Corresponding Source under the terms of this License,
 in one of these ways:
 
-a) Convey the object code in, or embodied in, a physical product
-(including a physical distribution medium), accompanied by the
-Corresponding Source fixed on a durable physical medium
-customarily used for software interchange.
+    a) Convey the object code in, or embodied in, a physical product
+    (including a physical distribution medium), accompanied by the
+    Corresponding Source fixed on a durable physical medium
+    customarily used for software interchange.
 
-b) Convey the object code in, or embodied in, a physical product
-(including a physical distribution medium), accompanied by a
-written offer, valid for at least three years and valid for as
-long as you offer spare parts or customer support for that product
-model, to give anyone who possesses the object code either (1) a
-copy of the Corresponding Source for all the software in the
-product that is covered by this License, on a durable physical
-medium customarily used for software interchange, for a price no
-more than your reasonable cost of physically performing this
-conveying of source, or (2) access to copy the
-Corresponding Source from a network server at no charge.
+    b) Convey the object code in, or embodied in, a physical product
+    (including a physical distribution medium), accompanied by a
+    written offer, valid for at least three years and valid for as
+    long as you offer spare parts or customer support for that product
+    model, to give anyone who possesses the object code either (1) a
+    copy of the Corresponding Source for all the software in the
+    product that is covered by this License, on a durable physical
+    medium customarily used for software interchange, for a price no
+    more than your reasonable cost of physically performing this
+    conveying of source, or (2) access to copy the
+    Corresponding Source from a network server at no charge.
 
-c) Convey individual copies of the object code with a copy of the
-written offer to provide the Corresponding Source.  This
-alternative is allowed only occasionally and noncommercially, and
-only if you received the object code with such an offer, in accord
-with subsection 6b.
+    c) Convey individual copies of the object code with a copy of the
+    written offer to provide the Corresponding Source.  This
+    alternative is allowed only occasionally and noncommercially, and
+    only if you received the object code with such an offer, in accord
+    with subsection 6b.
 
-d) Convey the object code by offering access from a designated
-place (gratis or for a charge), and offer equivalent access to the
-Corresponding Source in the same way through the same place at no
-further charge.  You need not require recipients to copy the
-Corresponding Source along with the object code.  If the place to
-copy the object code is a network server, the Corresponding Source
-may be on a different server (operated by you or a third party)
-that supports equivalent copying facilities, provided you maintain
-clear directions next to the object code saying where to find the
-Corresponding Source.  Regardless of what server hosts the
-Corresponding Source, you remain obligated to ensure that it is
-available for as long as needed to satisfy these requirements.
+    d) Convey the object code by offering access from a designated
+    place (gratis or for a charge), and offer equivalent access to the
+    Corresponding Source in the same way through the same place at no
+    further charge.  You need not require recipients to copy the
+    Corresponding Source along with the object code.  If the place to
+    copy the object code is a network server, the Corresponding Source
+    may be on a different server (operated by you or a third party)
+    that supports equivalent copying facilities, provided you maintain
+    clear directions next to the object code saying where to find the
+    Corresponding Source.  Regardless of what server hosts the
+    Corresponding Source, you remain obligated to ensure that it is
+    available for as long as needed to satisfy these requirements.
 
-e) Convey the object code using peer-to-peer transmission, provided
-you inform other peers where the object code and Corresponding
-Source of the work are being offered to the general public at no
-charge under subsection 6d.
+    e) Convey the object code using peer-to-peer transmission, provided
+    you inform other peers where the object code and Corresponding
+    Source of the work are being offered to the general public at no
+    charge under subsection 6d.
 
   A separable portion of the object code, whose source code is excluded
 from the Corresponding Source as a System Library, need not be
@@ -352,28 +350,28 @@ for which you have or can give appropriate copyright permission.
 add to a covered work, you may (if authorized by the copyright holders of
 that material) supplement the terms of this License with terms:
 
-a) Disclaiming warranty or limiting liability differently from the
-terms of sections 15 and 16 of this License; or
+    a) Disclaiming warranty or limiting liability differently from the
+    terms of sections 15 and 16 of this License; or
 
-b) Requiring preservation of specified reasonable legal notices or
-author attributions in that material or in the Appropriate Legal
-Notices displayed by works containing it; or
+    b) Requiring preservation of specified reasonable legal notices or
+    author attributions in that material or in the Appropriate Legal
+    Notices displayed by works containing it; or
 
-c) Prohibiting misrepresentation of the origin of that material, or
-requiring that modified versions of such material be marked in
-reasonable ways as different from the original version; or
+    c) Prohibiting misrepresentation of the origin of that material, or
+    requiring that modified versions of such material be marked in
+    reasonable ways as different from the original version; or
 
-d) Limiting the use for publicity purposes of names of licensors or
-authors of the material; or
+    d) Limiting the use for publicity purposes of names of licensors or
+    authors of the material; or
 
-e) Declining to grant rights under trademark law for use of some
-trade names, trademarks, or service marks; or
+    e) Declining to grant rights under trademark law for use of some
+    trade names, trademarks, or service marks; or
 
-f) Requiring indemnification of licensors and authors of that
-material by anyone who conveys the material (or modified versions of
-it) with contractual assumptions of liability to the recipient, for
-any liability that these contractual assumptions directly impose on
-those licensors and authors.
+    f) Requiring indemnification of licensors and authors of that
+    material by anyone who conveys the material (or modified versions of
+    it) with contractual assumptions of liability to the recipient, for
+    any liability that these contractual assumptions directly impose on
+    those licensors and authors.
 
   All other non-permissive additional terms are considered "further
 restrictions" within the meaning of section 10.  If the Program as you
@@ -618,9 +616,9 @@ an absolute waiver of all civil liability in connection with the
 Program, unless a warranty or assumption of liability accompanies a
 copy of the Program in return for a fee.
 
-END OF TERMS AND CONDITIONS
+                     END OF TERMS AND CONDITIONS
 
-How to Apply These Terms to Your New Programs
+            How to Apply These Terms to Your New Programs
 
   If you develop a new program, and you want it to be of the greatest
 possible use to the public, the best way to achieve this is to make it
@@ -631,21 +629,21 @@ to attach them to the start of each source file to most effectively
 state the exclusion of warranty; and each file should have at least
 the "copyright" line and a pointer to where the full notice is found.
 
-<one line to give the program's name and a brief idea of what it does.>
-Copyright (C) <year>  <name of author>
+    <one line to give the program's name and a brief idea of what it does.>
+    Copyright (C) <year>  <name of author>
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Affero General Public License as published
-by the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published
+    by the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Affero General Public License for more details.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
 
-You should have received a copy of the GNU Affero General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 Also add information on how to contact you by electronic and paper mail.
 
@@ -661,62 +659,3 @@ specific requirements.
 if any, to sign a "copyright disclaimer" for the program, if necessary.
 For more information on this, and how to apply and follow the GNU AGPL, see
 <https://www.gnu.org/licenses/>.
-
-**Note: GSOPs 1.0 was released under the the MIT license. GSOPs 2.0 and above are licensed under AGPL 3.0.**
-
-## GSOPs also contains the following components (as modules), and their associated licenses:
-
-plyfile.py (pyply)
-```
-#   Copyright 2014-2023 Darsh Ranjan and plyfile authors.
-#
-#   This file is part of python-plyfile.
-#
-#   python-plyfile is free software: you can redistribute it and/or
-#   modify it under the terms of the GNU General Public License as
-#   published by the Free Software Foundation, either version 3 of the
-#   License, or (at your option) any later version.
-#
-#   python-plyfile is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-#   General Public License for more details.
-#
-#   You should have received a copy of the GNU General Public License
-#   along with python-plyfile.  If not, see
-#       <http://www.gnu.org/licenses/>.
-```
-
-read_write_model.ply (COLMAP)
-```
-# Copyright (c) 2023, ETH Zurich and UNC Chapel Hill.
-# All rights reserved.
-#
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions are met:
-#
-#     * Redistributions of source code must retain the above copyright
-#       notice, this list of conditions and the following disclaimer.
-#
-#     * Redistributions in binary form must reproduce the above copyright
-#       notice, this list of conditions and the following disclaimer in the
-#       documentation and/or other materials provided with the distribution.
-#
-#     * Neither the name of ETH Zurich and UNC Chapel Hill nor the names of
-#       its contributors may be used to endorse or promote products derived
-#       from this software without specific prior written permission.
-#
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
-# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-# POSSIBILITY OF SUCH DAMAGE.
-```
-
-

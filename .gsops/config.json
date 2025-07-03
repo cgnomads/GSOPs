@@ -1,0 +1,12 @@
+{
+    "ophide_levels": {
+        "0": {
+            "Lop": [
+                "*gaussian_splats_import*"
+            ],
+            "Sop": [
+                "*gaussian_splats_mirror*"
+            ]
+        }
+    }
+}

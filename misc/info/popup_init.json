@@ -1,0 +1,28 @@
+{
+    "date" : "2025-06-27",
+    "popup" : {
+        "title" : "GSOPs 2.6 by CG Nomads",
+        "content" : "Thank you for installing GSOPs, Where Magic Meets Reality. This update includes support for 2DGS, Solaris, splat mirroring, and more!\n\nGSOPs is trusted by professional artists and studios worldwide. While we're proud to keep the core experience free and open source, this is only possible thanks to contributions and commercial licensing. Consider our new subscription offering to unlock premium features and support GSOPs' ongoing development in the process.\n\nPlease enjoy!",
+        "buttons" : [
+            {
+                "text" : "Visit CG Nomads",
+                "action" : "open_url",
+                "url" : "https://www.cgnomads.com/"
+            },
+            {
+                "text" : "Support GSOPs and Unlock Early Access Features",
+                "action" : "open_url",
+                "url" : "https://buymeacoffee.com/gsopsproject"
+            },
+            {
+                "text" : "Join Discord Sever",
+                "action" : "open_url",
+                "url" : "https://discord.gg/bwsvvRYNJa"
+            },
+            {
+                "text" : "Close",
+                "action" : "close"
+            }
+        ]
+    }
+}
