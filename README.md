@@ -1,4 +1,4 @@
-# GSOPs 2.6 (Gaussian Splatting Operators) for SideFX Houdini 20.5
+# GSOPs 2.7 (Gaussian Splatting Operators) for SideFX Houdini 20.5
 
 [Watch the GSOPs 2.5 Sizzle Reel](https://youtu.be/-_gqsi6NYcY)
 
@@ -86,11 +86,20 @@ Activate your license using the GSOPs shelf button.
 
 GSOPs is packed with features. For more information regarding any of the nodes shown above, please check the [wiki](https://github.com/cgnomads/GSOPs/wiki/GSOPs-Nodes) and reference the built-in help cards.
 
-## [NEW] Support for 2DGS
-The `Gaussian Splats Import` SOP now accepts [2DGS](https://github.com/hbb1/2d-gaussian-splatting) models!
+## [NEW & EARLY ACCESS] Gaussian Splats Enhance
+Add feature attributes to your splats, generate and/or improve normals, and add ambient occlusion.
 
-## [NEW & EARLY ACCESS] Support for Solaris & Karma
+## [NEW & EARLY ACCESS] Gaussian Splats Sharpen
+Sharpen splats using optional mask attribute (e.g., from feature attributes).
+
+## [EARLY ACCESS] Support for Solaris & Karma
 We now provide a `Gaussian Splats Import` LOP node to simplify rendering and relighting Splats in Solaris. Additionally, the `Gaussian Splats Evaluate Spherical Harmonics` has been updated to bake spherical harmonics to the color attribute (`v@Cd`) for raytracing. Check out the `solaris.hip` example to learn more.
+
+## [EARLY ACCESS] Gaussian Splats Mirror
+Mirror your splats while preserving proper view dependent effects (spherical harmonics).
+
+## Support for 2DGS
+The `Gaussian Splats Import` SOP now accepts [2DGS](https://github.com/hbb1/2d-gaussian-splatting) models!
 
 ## Coarse Meshing
 GSOPs 2.5 introduces dependency-free coarse meshing for 3D Gaussian Splatting. Coarse meshes are an effective "sparse node graph" for splat editing operations.
