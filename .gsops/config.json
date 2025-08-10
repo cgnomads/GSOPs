@@ -5,7 +5,9 @@
                 "*gaussian_splats_import*"
             ],
             "Sop": [
-                "*gaussian_splats_mirror*"
+                "*gaussian_splats_enhance*",
+                "*gaussian_splats_mirror*",
+                "*gaussian_splats_sharpen*"
             ]
         }
     }
