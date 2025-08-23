@@ -1,8 +1,8 @@
 {
-    "date" : "2025-06-27",
+    "date" : "2025-08-19",
     "popup" : {
-        "title" : "GSOPs 2.6 by CG Nomads",
-        "content" : "Thank you for installing GSOPs, Where Magic Meets Reality. This update includes support for 2DGS, Solaris, splat mirroring, and more!\n\nGSOPs is trusted by professional artists and studios worldwide. While we're proud to keep the core experience free and open source, this is only possible thanks to contributions and commercial licensing. Consider our new subscription offering to unlock premium features and support GSOPs' ongoing development in the process.\n\nPlease enjoy!",
+        "title" : "GSOPs 2.7 by CG Nomads",
+        "content" : "Thank you for installing GSOPs, Where Magic Meets Reality. This update includes tools for enhancing and sharpening Gaussian splats (Early Access).\n\nGSOPs is trusted by professional artists and studios worldwide. While we're proud to keep the core experience free and open source, this is only possible thanks to contributions and commercial licensing. Consider becomign an Early Access member to unlock premium features and support GSOPs' ongoing development in the process.\n\nPlease enjoy!",
         "buttons" : [
             {
                 "text" : "Visit CG Nomads",
@@ -13,6 +13,11 @@
                 "text" : "Support GSOPs and Unlock Early Access Features",
                 "action" : "open_url",
                 "url" : "https://buymeacoffee.com/gsopsproject"
+            },
+            {
+                "text" : "See Complete Changelog",
+                "action" : "open_url",
+                "url" : "https://github.com/cgnomads/GSOPs/releases/tag/v2.7"
             },
             {
                 "text" : "Join Discord Sever",
