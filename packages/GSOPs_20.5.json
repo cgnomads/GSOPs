@@ -4,10 +4,10 @@
     "env": 
     [
         { 
-            "GSOPS": "D:/Projects/gsops_renderer" 
+            "GSOPS": "D:/GSOPs" 
         },
         {
-            "GSOPS_VERSION": "2.7.0"
+            "GSOPS_VERSION": "2.7.1"
         },
         {
             "GSPLAT_RENDERER": 
