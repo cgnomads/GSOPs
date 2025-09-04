@@ -10,6 +10,7 @@
     <memberTool name="support_gsops"/>
     <memberTool name="join_gsops_discord"/>
     <memberTool name="install_license_key"/>
+    <memberTool name="plugin_settings"/>
   </toolshelf>
 
   <tool name="download_gsops_sample_data" label="Download Sample Data" icon="SOP_file">
@@ -124,6 +125,263 @@ else:
   dialog = GSOPsLicenseInstaller(hou.ui.mainQtWindow())
   dialog.setAttribute(QtCore.Qt.WA_DeleteOnClose)
   dialog.show()
+]]></script>
+  </tool>
+
+  <tool name="plugin_settings" label="Viewport Settings" icon="ROP_shell">
+    <script scriptType="python"><![CDATA[
+import json
+
+from pathlib import Path
+from PySide2 import QtWidgets, QtCore
+
+from gsops.authentication import authentication_level
+from gsops.settings import save_settings, load_settings, apply_settings
+
+
+WINDOW_TITLE = "GSOPs Viewport Settings"
+
+class GSplatSettingsUI(QtWidgets.QDialog):
+    
+    #
+    # Qt UI stuff
+    #
+
+    SLIDER_STYLESHEET = """
+        QSlider::handle:horizontal {
+            width: 10px;
+            background: #3498db;
+            border: 1px solid #5c5c5c;
+            border-radius: 5px;
+        }
+        QSlider::handle:horizontal:disabled {
+            background: rgba(128, 128, 128, 0.7);  /* grey, 70% opaque */
+            border: 1px solid rgba(92, 92, 92, 0.7);
+        }
+        QSlider::groove:horizontal {
+            height: 8px;
+            background: #ccc;
+            border-radius: 4px;
+        }
+    """
+    
+
+    def _create_slider(self, minimum, maximum, tick_interval, single_step, value):
+        slider = QtWidgets.QSlider(QtCore.Qt.Horizontal)
+        slider.setMinimum(minimum)
+        slider.setMaximum(maximum)
+        slider.setTickPosition(QtWidgets.QSlider.TicksBelow)
+        slider.setTickInterval(tick_interval)
+        slider.setSingleStep(single_step)
+        slider.setValue(value)
+        slider.setStyleSheet(self.SLIDER_STYLESHEET)
+        return slider
+
+
+    def _add_labeled_widget(self, label_text, widget):
+        self.layout.addWidget(QtWidgets.QLabel(label_text))
+        self.layout.addWidget(widget)
+
+
+    def _add_spacing(self):
+        self.layout.addSpacing(10)  # extra space above separator
+        line = QtWidgets.QFrame()
+        line.setFrameShape(QtWidgets.QFrame.HLine)
+        line.setFrameShadow(QtWidgets.QFrame.Sunken)
+        line.setFixedHeight(2)  # make line a bit thicker
+        self.layout.addWidget(line)
+        self.layout.addSpacing(10)  # extra space below separator
+
+
+    def _update_world_range_label(self, value):
+        is_depth = self.render_mode_combo.currentIndex() == 1
+        label_update_hint = " -- (viewport updates on release)"
+        if is_depth:
+            self.world_range_label.setText(
+                f"Range: 0 to {value} {label_update_hint}"
+            )
+        else:
+            self.world_range_label.setText(
+                f"Range: (-{value}, -{value}, -{value}) "
+                f"to ({value}, {value}, {value}) {label_update_hint}"
+            )
+
+
+    def _set_sh_order_slider_enabled(self):
+        self.sh_order_slider.setEnabled(self.render_mode_combo.currentIndex() in [0, 3]) # SH only for color and livecomp modes
+
+
+    def _update_world_range_label_and_apply_settings(self):
+        val = self.world_range_slider.value()
+        snapped_val = max(round(val / 5) * 5, 1)
+        if snapped_val != val:
+            self.world_range_slider.blockSignals(True)
+            self.world_range_slider.setValue(snapped_val)
+            self.world_range_slider.blockSignals(False)
+        self._update_world_range_label(snapped_val)
+        self._set_sh_order_slider_enabled()
+        self.update_and_apply_settings()
+    
+
+    def _update_world_range_slider_visibility(self, idx):
+        if not self.world_range_slider:
+            return
+        self._update_world_range_label(self.world_range_slider.value())
+        self.world_range_widget.setVisible(idx in [1, 2]) # depth or world pos
+
+
+    #
+    # Main update methods
+    #
+
+    def closeEvent(self, event):
+        self.update_and_apply_settings()
+        super(GSplatSettingsUI, self).closeEvent(event)
+
+      
+    def update_settings(self):
+        spherical_harmonics_max_3dgs = self.sh_order_slider.value()
+        self.settings_dict["3dgs_spherical_harmonics_max"] = spherical_harmonics_max_3dgs
+        
+        #live_compositing_3dgs = self.compositing_mode_combo.currentIndex()
+        #self.settings_dict["3dgs_live_compositing"] = live_compositing_3dgs
+
+        render_mode_3dgs = self.render_mode_combo.currentIndex()
+        self.settings_dict["3dgs_render_mode"] = render_mode_3dgs
+
+        gsplat_count_max_3dgs = self.gsplat_count_spin.value()
+        self.settings_dict["3dgs_gsplat_count_max"] = gsplat_count_max_3dgs
+
+        # This slider is not always there, so need to check first.
+        if self.world_range_slider:
+            world_range_3dgs = self.world_range_slider.value()
+            self.settings_dict["3dgs_world_range"] = world_range_3dgs
+        
+        save_settings(self.settings_dict)
+
+
+    def apply_settings(self):
+        apply_settings()
+        sc = hou.ui.paneTabOfType(hou.paneTabType.SceneViewer)
+        for vp in sc.viewports():
+            vp.draw()
+
+
+    def update_and_apply_settings(self):
+        self.update_settings()
+        self.apply_settings()
+
+
+    #
+    # __init__
+    #
+
+    def __init__(self, parent=None):
+        super(GSplatSettingsUI, self).__init__(parent)
+        
+        self.settings_dict = load_settings()
+        auth_level = authentication_level()
+        
+        render_mode_level_3dgs = self.settings_dict.get("3dgs_render_mode_level", 0)
+        render_mode_settings_enabled = not render_mode_level_3dgs or auth_level >= render_mode_level_3dgs
+        render_mode_3dgs = self.settings_dict.get("3dgs_render_mode", 0) if render_mode_settings_enabled else 0
+
+        self.setWindowTitle(WINDOW_TITLE)
+        self.setMinimumWidth(300)
+
+        self.layout = QtWidgets.QVBoxLayout()
+
+        #
+        # Viewport Render mode dropdown
+        #
+        self.render_mode_combo = QtWidgets.QComboBox()
+        self.render_mode_combo.addItems(["Color", "Depth", "WorldPos", "Live Compositing"])
+        self.render_mode_combo.setCurrentIndex(render_mode_3dgs)
+        render_mode_label = "Render mode:"
+        if not render_mode_settings_enabled:
+            render_mode_label = render_mode_label + "  (color/depth/worldPos/liveComp) - LICENSE NEEDED"
+            self.render_mode_combo.setEnabled(False)
+        self.render_mode_combo.currentIndexChanged.connect(self.update_and_apply_settings)
+        self.render_mode_combo.currentIndexChanged.connect(self._set_sh_order_slider_enabled)
+        self._add_labeled_widget(render_mode_label, self.render_mode_combo)
+
+        #
+        # World Range Slider
+        #
+        self.world_range_slider = None
+        if render_mode_settings_enabled:
+            world_range_3dgs = self.settings_dict.get("3dgs_world_range", 50)
+            self.world_range_widget = QtWidgets.QWidget()
+            world_range_layout = QtWidgets.QVBoxLayout(self.world_range_widget)
+            world_range_layout.setContentsMargins(0, 0, 0, 0)
+            slider_row = QtWidgets.QHBoxLayout()
+            self.world_range_slider = self._create_slider(1, 1000, 5, 5, world_range_3dgs)
+            slider_row.addWidget(self.world_range_slider)
+            world_range_layout.addLayout(slider_row)
+
+            self.world_range_label = QtWidgets.QLabel("")
+            world_range_layout.addWidget(self.world_range_label)
+            # Update the label immediately on every change
+            self.world_range_slider.valueChanged.connect(
+                lambda val: self._update_world_range_label(val)
+            )
+            # But only apply settings when the slider is released
+            self.world_range_slider.sliderReleased.connect(self.update_and_apply_settings)
+            
+            self.render_mode_combo.currentIndexChanged.connect(self._update_world_range_slider_visibility)
+            self.layout.addWidget(self.world_range_widget)
+        self._update_world_range_slider_visibility(self.render_mode_combo.currentIndex())
+        self._add_spacing()
+
+        #
+        # Spherical Harmonics slider
+        #
+        sh_layout = QtWidgets.QHBoxLayout()
+        self.layout.addWidget(QtWidgets.QLabel("Spherical Harmonics Order (max):"))
+        self.sh_order_slider = self._create_slider(0, 3, 1, 1, self.settings_dict.get("3dgs_spherical_harmonics_max", 3))
+        self.sh_value_label = QtWidgets.QLabel(str(self.sh_order_slider.value()))
+        self.sh_order_slider.valueChanged.connect(
+            lambda val: self.sh_value_label.setText(str(val))
+        )
+        self.sh_order_slider.valueChanged.connect(self.update_and_apply_settings)
+        sh_layout.addWidget(self.sh_order_slider)
+        sh_layout.addWidget(self.sh_value_label)
+        self.layout.addLayout(sh_layout)
+        self._set_sh_order_slider_enabled()
+        self._add_spacing()
+
+        #
+        # Max GSplat count slider
+        #
+        gsplat_count_layout = QtWidgets.QHBoxLayout()
+        self.layout.addWidget(QtWidgets.QLabel("GSplat Count Max (close popup & re-cook after changing):"))
+        self.gsplat_count_spin = QtWidgets.QSpinBox()
+        self.gsplat_count_spin.setMinimum(1_024)
+        self.gsplat_count_spin.setMaximum(33_554_432)
+        self.gsplat_count_spin.setSingleStep(100)
+        self.gsplat_count_spin.setValue(self.settings_dict.get("3dgs_gsplat_count_max", 8_388_608))
+        self.gsplat_count_spin.valueChanged.connect(self.update_settings)
+        gsplat_count_layout.addWidget(self.gsplat_count_spin)
+        self.layout.addLayout(gsplat_count_layout)
+
+        self.setLayout(self.layout)
+
+
+
+def show_gsplat_dialog():
+    # Prevent multiple dialogs with the same title
+    for widget in QtWidgets.QApplication.allWidgets():
+        if isinstance(widget, QtWidgets.QDialog) and widget.windowTitle() == WINDOW_TITLE:
+            widget.close()
+
+    dialog = GSplatSettingsUI(hou.ui.mainQtWindow())
+    dialog.setAttribute(QtCore.Qt.WA_DeleteOnClose)
+    dialog.show()
+
+
+show_gsplat_dialog()
+
+
 ]]></script>
   </tool>
 </shelfDocument>

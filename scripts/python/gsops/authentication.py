@@ -3,6 +3,8 @@ import inspect
 import json
 from pathlib import Path
 
+from gsops.settings import apply_settings
+
 GSOPS_PATH = hou.text.expandString("$GSOPS") or str(Path(inspect.getfile(inspect.currentframe())).parent.parent)
 GSOPS_LICENSE_FILE_PATH = f"{GSOPS_PATH}/.gsops/license"
 GSOPS_CONFIG_FILE_PATH = f"{GSOPS_PATH}/.gsops/config.json"
@@ -71,9 +73,11 @@ def authenticate():
 
 
 def setup_for_authentication_level(level=0):
-    # Currently, this funtion only does OTL visibility, but we might add more stuff later.
+    # 1) Apply main plugin settings
+    apply_settings()
 
-    # Unhide everything...
+    # 2) Setup node visibility
+    # Unhide all otls...
     all_node_type_categories = hou.nodeTypeCategories().keys()
     for node_type_category in all_node_type_categories:
         node_category = hou.nodeTypeCategories().get(node_type_category) 
@@ -81,8 +85,7 @@ def setup_for_authentication_level(level=0):
             if not node_type_name.startswith("gsop::"):
                 continue
             node_type.setHidden(False)
-
-    # And now retrieve config to determine visibility of nodes.
+    # Retrieve config to determine visibility of nodes...
     config_file = Path(GSOPS_CONFIG_FILE_PATH)
     if not config_file.exists():
         return
@@ -92,8 +95,7 @@ def setup_for_authentication_level(level=0):
     ophide_levels = config_file_dict.get("ophide_levels", {})
     otl_hide_dict = ophide_levels.get(level_str)
     if not otl_hide_dict:
-        return
-            
+        return    
     # And hide nodes that are not available at this authentication level...
     for node_type_category, node_type_names in otl_hide_dict.items():
         if node_type_category not in all_node_type_categories:
