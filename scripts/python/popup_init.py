@@ -41,13 +41,12 @@ def _load_json(file_path):
 
 def _check_connection(host="8.8.8.8", port=53, timeout=1.0): # Default is Google's DNS server
     try:
-        socket.setdefaulttimeout(timeout)
         # Use a context manager to explicitly close the socket
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            s.connect((host, port))
-        return True
-    except socket.error:
+        with socket.create_connection((host, port), timeout=timeout):
+            return True
+    except OSError:
         return False
+
 
 def _fetch_json_from_url(url):
     """Fetch JSON from a GitHub URL if online."""
