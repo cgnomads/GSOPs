@@ -22,6 +22,9 @@
         },
         {
             "GSOPS_USE_VERBOSE_LOGGING" : "1"
+        },
+        {
+            "GSOPS_DISABLE_POPUP" : "0"
         }
     ],
     "hpath": 
